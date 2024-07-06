@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import main.KeyInput;
 import main.gamepanel;
+import objects.bomb_obj;
 
 public class player extends entity{
 	gamepanel gp;
@@ -19,10 +20,10 @@ public class player extends entity{
 		this.keyH = keyH;
 		
 		solid_area = new Rectangle();
-		solid_area.x = 12;
-		solid_area.y = 24;
-		solid_area.width = 24;
-		solid_area.height = 24;
+		solid_area.x = 8;
+		solid_area.y = 12;
+		solid_area.width = 32;
+		solid_area.height = 32;
 		
 		
 		GetPlayerImage();
@@ -43,41 +44,41 @@ public class player extends entity{
 			if(keyH.up == true)
 			{   
 				direction = "up";
-				this.y = Math.max(this.y - this.speed , 0);	
+//				this.y = Math.max(this.y - this.speed , 0);	
 			}
 			if(keyH.down == true)
 			{
 				direction = "down";
-				this.y = Math.min(this.y + this.speed,gp.screen_height - gp.tile_size_net);	
+//				this.y = Math.min(this.y + this.speed,gp.screen_height - gp.tile_size_net);	
 			}
 			if(keyH.left == true)
 			{
 				direction = "left";
-				this.x = Math.max(this.x - this.speed,0);
+//				this.x = Math.max(this.x - this.speed,0);
 			}
 			if(keyH.right == true)
 			{
 				direction = "right";
-				this.x = Math.min(this.x + this.speed,gp.screen_width - gp.tile_size_net);
+//				this.x = Math.min(this.x + this.speed,gp.screen_width - gp.tile_size_net);
 			}
 			
-//			//CHECKING COLLISION:
-//			collision_on = false;
-//			gp.collision.check(this);
-//			//IF COLLISION IS FALSE, MOVE THEN ONLY:
-//			if(collision_on == false)
-//			{
-//				switch(direction) {
-//				case "up":this.y = Math.max(this.y - this.speed , 0);	
-//					break;
-//				case "down":
-//					break;
-//				case "left":
-//					break;
-//				case "right":
-//					break;
-//				}
-//			}
+			//CHECKING COLLISION:
+			collision_on = false;
+			gp.collision.check(this);
+			//IF COLLISION IS FALSE, MOVE THEN ONLY:
+			if(collision_on == false)
+			{
+				switch(direction) {
+				case "up":this.y = Math.max(this.y - this.speed , 0);	
+					break;
+				case "down":this.y = Math.min(this.y + this.speed,gp.screen_height - gp.tile_size_net);
+					break;
+				case "left":this.x = Math.max(this.x - this.speed,0);
+					break;
+				case "right":this.x = Math.min(this.x + this.speed,gp.screen_width - gp.tile_size_net);
+					break;
+				}
+			}
 			
 			spritecount++;
 			if(spritecount > 10)
@@ -121,6 +122,7 @@ public class player extends entity{
 			direction = "down";
 			spritenum = 2;
 		}
+		
 		
 	}
 	

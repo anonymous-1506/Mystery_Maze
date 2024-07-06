@@ -10,8 +10,8 @@ import main.gamepanel;
 public class MazeGenerator {
 	
 	gamepanel gp;
-    public int rows = 15;   // Number of rows in the maze
-    public int cols = 12;   // Number of columns in the maze
+    public int rows ;   // Number of rows in the maze
+    public int cols;   // Number of columns in the maze
     private static final int WALL = 1;    // Representing walls as 1
     private static final int PATH = 0;    // Representing paths as 0
     private static final int[] DX = {0, 2, 0, -2}; // Movement in x direction (right, down, left, up)
@@ -22,6 +22,8 @@ public class MazeGenerator {
 
     public MazeGenerator(gamepanel gp) {
     	this.gp = gp;
+    	rows = gp.Rows;
+    	cols = gp.Columns;
         this.rows = rows % 2 == 0 ? rows + 1 : rows;  // Ensure odd number of rows for proper maze
         this.cols = cols % 2 == 0 ? cols + 1 : cols;  // Ensure odd number of columns for proper maze
         maze = new int[this.rows][this.cols];
@@ -92,7 +94,7 @@ public class MazeGenerator {
     		{
     			for(int j = startj[b]; j <= endj[b]; j++)
     			{
-    				if(maze[i][j] == 0)
+    				if(maze[i][j] == 0 && maze[i][j-1] == 1 && maze[i][j+1] == 1)
     				{
     					maze[i][j] = 5;
     					done = true;
@@ -160,9 +162,9 @@ public class MazeGenerator {
     {
     	int ret = 0;
     	boolean done = false;
-    	for(int i = 5; i <= 10; i++)
+    	for(int i = rows/2 - 3; i <= rows/2 + 3; i++)
     	{
-    		for(int j = 3; j <= 9; j++)
+    		for(int j = cols/2 - 3; j <= cols/2 + 3; j++)
     		{
     			if(maze[i][j] == 0)
     			{
@@ -378,5 +380,20 @@ public class MazeGenerator {
     public int getMaze(int i,int j) {
         return maze[i][j];
     }
+ // Get the maze array
+    public boolean getMazeBool(int i,int j) {
+        int check = maze[i][j];
+        boolean check1 = gp.tilem.tiles[check].collision;
+        if(check1)
+        {
+        	return true;
+        }
+        else
+        {
+        	return false;
+        }
+        
+    }
+    
 
 }

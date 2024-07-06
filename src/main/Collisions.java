@@ -21,26 +21,44 @@ public class Collisions {
 		int entityTopRow = entityRectTopY/gp.tile_size_net;
 		int entityBottomRow = entityRectBottomY/gp.tile_size_net;
 		
-		int tile1,tile2;
+		boolean tile1,tile2;
 		
 		switch(entity.direction) {
 		case "up":
 			entityTopRow = (entityRectTopY - entity.speed)/gp.tile_size_net; //block that the entity is trying to enter
-//			if(entityLeftCol <= 16 && entityRightCol <= 16 && entityTopRow <= 12)
-			
-				tile1 = gp.maze.getMaze(entityLeftCol,entityTopRow);
-				tile2 = gp.maze.getMaze(entityRightCol, entityTopRow);
-				if (gp.tilem.tiles[tile1].collision == true || gp.tilem.tiles[tile2].collision == true)
+				tile1 = gp.maze.getMazeBool(entityTopRow,entityLeftCol);
+				tile2 = gp.maze.getMazeBool(entityTopRow,entityRightCol);
+				if (tile1 == true || tile2 == true)
 				{
 					entity.collision_on = true;
-				
-			}
+				}
 			break;
 		case "down":
+			entityBottomRow = (entityRectBottomY + entity.speed)/gp.tile_size_net; //block that the entity is trying to enter
+			tile1 = gp.maze.getMazeBool(entityBottomRow,entityLeftCol);
+			tile2 = gp.maze.getMazeBool(entityBottomRow,entityRightCol);
+			if (tile1 == true || tile2 == true)
+			{
+				entity.collision_on = true;
+			}
 			break;
 		case "left":
+			entityLeftCol = (entityRectLeftX - entity.speed)/gp.tile_size_net; //block that the entity is trying to enter
+			tile1 = gp.maze.getMazeBool(entityBottomRow,entityLeftCol);
+			tile2 = gp.maze.getMazeBool(entityTopRow,entityLeftCol);
+			if (tile1 == true || tile2 == true)
+			{
+				entity.collision_on = true;
+			}
 			break;
 		case "right":
+			entityRightCol = (entityRectRightX + entity.speed)/gp.tile_size_net; //block that the entity is trying to enter
+			tile1 = gp.maze.getMazeBool(entityBottomRow,entityRightCol);
+			tile2 = gp.maze.getMazeBool(entityTopRow,entityRightCol);
+			if (tile1 == true || tile2 == true)
+			{
+				entity.collision_on = true;
+			}
 			break;
 		}
 				

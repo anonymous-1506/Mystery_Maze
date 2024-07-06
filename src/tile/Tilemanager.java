@@ -41,7 +41,7 @@ public class Tilemanager {
 			
 			tiles[5] = new tile();
 			tiles[5].image = ImageIO.read(getClass().getResourceAsStream("/objects/obstacle.png"));
-			tiles[5].collision = false;
+			tiles[5].collision = true;
 			
 		}catch(IOException e)
 		{
@@ -58,7 +58,15 @@ public class Tilemanager {
 			for(int j = 0; j < maze.cols; j++)
 			{
 				int arr = maze.getMaze(i, j);
-				g2.drawImage(tiles[arr].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
+				if(arr > 3)
+				{
+					g2.drawImage(tiles[0].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
+					g2.drawImage(tiles[arr].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
+				}
+				else
+				{
+					g2.drawImage(tiles[arr].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
+				}
 				x += gp.tile_size_net;
 			}
 			y += 48;

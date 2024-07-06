@@ -6,34 +6,35 @@ import java.awt.event.KeyListener;
 public class KeyInput implements KeyListener{
 	
 	public boolean up,down,left,right;
+	public int space = 0;
 	
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub)
 		int code = e.getKeyCode();
 		
-		if(code == KeyEvent.VK_W)
-		{
+		switch(code) {
+		case KeyEvent.VK_UP:
 			up = true;
-		}
-		if(code == KeyEvent.VK_S)
-		{
+			break;
+		case KeyEvent.VK_DOWN:
 			down = true;
-		}
-		if(code == KeyEvent.VK_A)
-		{
+			break;
+		case KeyEvent.VK_LEFT:
 			left = true;
-		}
-		if(code == KeyEvent.VK_D)
-		{
+			break;
+		case KeyEvent.VK_RIGHT:
 			right = true;
+			break;
+		case KeyEvent.VK_SPACE:
+			space = 1;
+			break;
 		}
 		
 	}
@@ -41,25 +42,25 @@ public class KeyInput implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		int code = e.getKeyCode();
+        int code = e.getKeyCode();
 		
-		if(code == KeyEvent.VK_W)
-		{
+		switch(code) {
+		case KeyEvent.VK_UP:
 			up = false;
-		}
-		if(code == KeyEvent.VK_S)
-		{
+			break;
+		case KeyEvent.VK_DOWN:
 			down = false;
-		}
-		if(code == KeyEvent.VK_A)
-		{
+			break;
+		case KeyEvent.VK_LEFT:
 			left = false;
-		}
-		if(code == KeyEvent.VK_D)
-		{
+			break;
+		case KeyEvent.VK_RIGHT:
 			right = false;
+			break;
+		case KeyEvent.VK_SPACE:
+			space = 0;
+			break;
 		}
-		
 	}
 
 }

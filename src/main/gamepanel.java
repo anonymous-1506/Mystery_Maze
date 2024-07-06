@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import entity.player;
+import objects.bomb_obj;
+import objects.bomb_placer;
 import tile.MazeGenerator;
 import tile.Tilemanager;
 
@@ -13,6 +15,10 @@ import javax.swing.JPanel;
 
 
 public class gamepanel extends JPanel implements Runnable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//FPS
 	int FPS = 60;
 //	//player positional variables:
@@ -24,16 +30,19 @@ public class gamepanel extends JPanel implements Runnable {
 	public final int tile_size = 48; // retro 16 x 16 tiles
 	final int scale = 1; // scales the 16 x 16
 	public final int tile_size_net = tile_size * scale;
-	public final int Columns = 12;
+	public final int Columns = 20;
 	public final int Rows = 15;
 	public final int screen_width = Columns*tile_size_net; //768 px
 	public final int screen_height = Rows*tile_size_net; //576 px
 	
-	KeyInput KeysI = new KeyInput();
+	public KeyInput KeysI = new KeyInput();
 	public MazeGenerator maze = new MazeGenerator(this);
-	Tilemanager tilem = new Tilemanager(this);
+	public Tilemanager tilem = new Tilemanager(this);
 	Thread gameThread;
 	public Collisions collision = new Collisions(this);
+	public bomb_obj[] bombs = new bomb_obj[3];
+	public int bomb_count = 0;
+	public bomb_placer bombset = new bomb_placer(this);
 	
 	public player player = new player(this,KeysI);
 
@@ -99,7 +108,10 @@ public class gamepanel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
+		System.out.println(KeysI.space);
+		bombset.bomb_update();
 		player.update();
+		
 		System.out.println("rows:"+maze.rows+" cols:"+maze.cols);
 	}
 	
@@ -107,8 +119,13 @@ public class gamepanel extends JPanel implements Runnable {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 		tilem.draw(g2,maze);
-		
-		
+		for(int i = 0; i < 3; i++)
+		{
+			if(bombs[i] != null)
+			{
+				bombs[i].draw(g2, this);
+			}
+		}
 		player.draw(g2);
 		g2.dispose();
 	}
