@@ -19,4 +19,19 @@
     </ul>
     <img src = "https://github-production-user-asset-6210df.s3.amazonaws.com/148906347/346294019-b0203f25-4c06-4391-b17a-acfcc8f0136c.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240706%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240706T191742Z&X-Amz-Expires=300&X-Amz-Signature=bf1157f623ec13df6624a6e001d26307c00672ceff9f6a0c8ecb280e0403f726&X-Amz-SignedHeaders=host&actor_id=148906347&key_id=0&repo_id=824835899" height = "720" width = "960" >
   </li>
+<li>
+  Milestone 2:
+  <p>Requirements</p>
+  <ul>
+    <li>Allow the player character to move left, right, up, and down using touch controls, WASD keys, or arrow keys.
+    <li>Implement player movement and collision detection with maze walls.
+    <li>Enable the spacebar or a double-tap key to drop a bomb.
+  </ul>
+  <p>Implementations</p>
+  <ul>
+    <li>The Player movements are controlled by UP/DOWN... Arrow keys.
+    <li>Collision system with Maze walls, Door(prior to key collection) and spiked walls.
+    <li>Spacebar now deploys a bomb(3m in number at the start of the game).
+  </ul>
+</li>
 </ol>
