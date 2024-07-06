@@ -108,11 +108,9 @@ public class gamepanel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
-		System.out.println(KeysI.space);
 		bombset.bomb_update();
 		player.update();
 		
-		System.out.println("rows:"+maze.rows+" cols:"+maze.cols);
 	}
 	
 	public void paintComponent(Graphics g) {

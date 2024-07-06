@@ -21,10 +21,8 @@ public class bomb_obj {
 	public bomb_obj(gamepanel gp)
 	{
 		this.gp = gp;
-		int x = gp.player.x/gp.tile_size_net;
-		int y = gp.player.y/gp.tile_size_net;
-		X = x * gp.tile_size_net;
-		Y = y * gp.tile_size_net;
+		X = gp.player.x;
+		Y = gp.player.y;
 		try
 		{
 			image = ImageIO.read(getClass().getResourceAsStream("/objects/bomb.png"));
