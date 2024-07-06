@@ -17,8 +17,10 @@
       <li>There are spike obstacles that are generated randomly(number of them : 1 to 4 randomly , can make it level dependent later).
       <li>The maze generated as of now is uniques for every gameplay.
     </ul>
-    <img src = "https://github-production-user-asset-6210df.s3.amazonaws.com/148906347/346294019-b0203f25-4c06-4391-b17a-acfcc8f0136c.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240706%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240706T191742Z&X-Amz-Expires=300&X-Amz-Signature=bf1157f623ec13df6624a6e001d26307c00672ceff9f6a0c8ecb280e0403f726&X-Amz-SignedHeaders=host&actor_id=148906347&key_id=0&repo_id=824835899" height = "720" width = "960" >
+    <img src = "https://github.com/anonymous-1506/Mystery_Maze/assets/148906347/5863330a-3ee4-40f6-93fc-b0661598eb40" height = "720" width = "960">
   </li>
+  [Milestone1] : (https://github.com/anonymous-1506/Mystery_Maze/assets/148906347/5863330a-3ee4-40f6-93fc-b0661598eb40)
+
 <li>
   Milestone 2:
   <p>Requirements</p>
@@ -30,8 +32,11 @@
   <p>Implementations</p>
   <ul>
     <li>The Player movements are controlled by UP/DOWN... Arrow keys.
-    <li>Collision system with Maze walls, Door(prior to key collection) and spiked walls.
+    <li>Collision system with Maze walls, Door(prior to key collection) and spiked walls is implemented.
     <li>Spacebar now deploys a bomb(3m in number at the start of the game).
   </ul>
-<img src ""  height = "" width = "" >
+<img src = "https://github.com/anonymous-1506/Mystery_Maze/assets/148906347/ffc7e434-3a0c-4e8d-9285-8abcd07c4138"  height = "720" width = "960" >
+</li>
+[Milestone2]:(https://github.com/anonymous-1506/Mystery_Maze/assets/148906347/ffc7e434-3a0c-4e8d-9285-8abcd07c4138)
+
 </ol>
