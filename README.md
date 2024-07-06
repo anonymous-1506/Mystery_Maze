@@ -33,5 +33,5 @@
     <li>Collision system with Maze walls, Door(prior to key collection) and spiked walls.
     <li>Spacebar now deploys a bomb(3m in number at the start of the game).
   </ul>
-</li>
+<img src ""  height = "" width = "" >
 </ol>
