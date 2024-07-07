@@ -1,4 +1,4 @@
-package entity;
+ package entity;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -11,7 +11,7 @@ public class entity {
 	public String direction;
 	public int spritecount = 0;
 	public int spritenum = 1;
-	public Rectangle solid_area;
+	public Rectangle SolidArea = new Rectangle(0,0,48,48);;
 	public boolean collision_on = false;
 	
 }

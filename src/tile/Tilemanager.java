@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import entity.entity;
 import main.gamepanel;
 
 public class Tilemanager {
@@ -33,6 +34,7 @@ public class Tilemanager {
 			
 			tiles[3] = new tile();
 			tiles[3].image = ImageIO.read(getClass().getResourceAsStream("/objects/door.png"));
+			tiles[3].image2 = ImageIO.read(getClass().getResourceAsStream("/tiles/tile1.png"));
 			tiles[3].collision = true;
 			
 			tiles[4] = new tile();
@@ -46,6 +48,20 @@ public class Tilemanager {
 		}catch(IOException e)
 		{
 			e.getStackTrace();
+		}
+	}
+	public void update(entity entity)
+	{
+		if(!tiles[3].collision && gp.keyobj.inStock)
+		{	
+			int newx =  entity.SolidArea.x;
+			int newy =  entity.SolidArea.y;
+			int i = gp.maze.doori();
+			int j = gp.maze.doorj();
+			if(Math.abs(gp.player.x - (j*48)) <= 20  && Math.abs(gp.player.y - (i*48)) <= 20)
+			{
+				tiles[3].num = 1;
+			}
 		}
 	}
 	public void draw(Graphics2D g2,MazeGenerator maze) {
@@ -63,6 +79,17 @@ public class Tilemanager {
 					g2.drawImage(tiles[0].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
 					g2.drawImage(tiles[arr].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
 				}
+				else if(arr == 3)
+				{
+					if(tiles[arr].num == 0)
+					{
+						g2.drawImage(tiles[arr].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
+					}
+					else if(tiles[arr].num ==1)
+					{
+						g2.drawImage(tiles[arr].image2, x,y,gp.tile_size_net,gp.tile_size_net,null);
+					}
+				}
 				else
 				{
 					g2.drawImage(tiles[arr].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
@@ -72,6 +99,12 @@ public class Tilemanager {
 			y += 48;
 			x = 0;
 		}
-		
+//		int kx = 0;
+//		for(int k = 0; k < gp.maze.cols; k++)
+//		{
+//			g2.drawImage(tiles[1].image,kx,0,gp.tile_size_net,gp.tile_size_net,null);
+//			kx += gp.tile_size_net;
+//		}
+//		
 	}
 }

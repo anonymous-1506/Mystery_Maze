@@ -9,16 +9,36 @@ public class bomb_placer {
 		this.gp = gp;
 	}
 	public void bomb_update()
-	{
-		if(gp.KeysI.space == 1)
+	{	
+		int c = gp.KeysI.bomb;
+//		System.out.println("bomb "+c);
+		if(c !=  0)
 		{
-			if(gp.bomb_count < 3)
-			{	
-				gp.KeysI.space = 0;
-				gp.bombs[gp.bomb_count] = new bomb_obj(gp);
-				gp.player.y += gp.tile_size_net;
+			
+		if(gp.bomb_count < 3)
+		{	
+				switch(c) {
+				case 1:
+					gp.bombs[gp.bomb_count] = new bomb_obj(gp,"up");
+					gp.KeysI.bomb = 0;
+					break;
+				case 2:
+					gp.bombs[gp.bomb_count] = new bomb_obj(gp,"down");
+					gp.KeysI.bomb = 0;
+					break;
+				case 3:
+					gp.bombs[gp.bomb_count] = new bomb_obj(gp,"left");
+					gp.KeysI.bomb = 0;
+					break;
+				case 4:
+					gp.bombs[gp.bomb_count] = new bomb_obj(gp,"right");
+					gp.KeysI.bomb = 0;
+					break;
+						}
 				gp.bomb_count++;
-			}
 		}
+		}
+//			System.out.println("no:of bombs: "+gp.bomb_count);
 	}
 }
+

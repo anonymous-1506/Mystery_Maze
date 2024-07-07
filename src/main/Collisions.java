@@ -1,6 +1,9 @@
 package main;
 
+import javax.swing.text.html.parser.Entity;
+import objects.key_object;
 import entity.entity;
+
 
 public class Collisions {
 	gamepanel gp;
@@ -11,10 +14,10 @@ public class Collisions {
 	public void check(entity entity)
 	{	
 		//the coordinates of the 4 sides of invisible rectangle
-		int entityRectLeftX = entity.x + entity.solid_area.x;
-		int entityRectRightX = entity.x + entity.solid_area.x + entity.solid_area.width;
-		int entityRectTopY = entity.y + entity.solid_area.y;
-		int entityRectBottomY = entity.y + entity.solid_area.y + entity.solid_area.height;
+		int entityRectLeftX = entity.x + entity.SolidArea.x;
+		int entityRectRightX = entity.x + entity.SolidArea.x + entity.SolidArea.width;
+		int entityRectTopY = entity.y + entity.SolidArea.y;
+		int entityRectBottomY = entity.y + entity.SolidArea.y + entity.SolidArea.height;
 		//rows and columns in the grid corresponding to that sides
 		int entityLeftCol = entityRectLeftX/gp.tile_size_net;
 		int entityRightCol = entityRectRightX/gp.tile_size_net;
@@ -61,7 +64,6 @@ public class Collisions {
 			}
 			break;
 		}
-				
-		
 	}
+	
 }

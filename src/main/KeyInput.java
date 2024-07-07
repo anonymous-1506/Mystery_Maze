@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 public class KeyInput implements KeyListener{
 	
 	public boolean up,down,left,right;
-	public int space = 0;
+	public int bomb = 0;
 	
 	
 	@Override
@@ -20,20 +20,29 @@ public class KeyInput implements KeyListener{
 		int code = e.getKeyCode();
 		
 		switch(code) {
-		case KeyEvent.VK_UP:
+		case KeyEvent.VK_W:
 			up = true;
 			break;
-		case KeyEvent.VK_DOWN:
+		case KeyEvent.VK_S:
 			down = true;
 			break;
-		case KeyEvent.VK_LEFT:
+		case KeyEvent.VK_A:
 			left = true;
 			break;
-		case KeyEvent.VK_RIGHT:
+		case KeyEvent.VK_D:
 			right = true;
 			break;
-		case KeyEvent.VK_SPACE:
-			space = 1;
+		case KeyEvent.VK_UP:
+			bomb = 1;
+			break;
+		case KeyEvent.VK_DOWN:
+			bomb = 2;
+			break;
+		case KeyEvent.VK_LEFT:
+			bomb = 3;
+			break;
+		case KeyEvent.VK_RIGHT:
+			bomb = 4;
 			break;
 		}
 		
@@ -45,20 +54,29 @@ public class KeyInput implements KeyListener{
         int code = e.getKeyCode();
 		
 		switch(code) {
-		case KeyEvent.VK_UP:
+		case KeyEvent.VK_W:
 			up = false;
 			break;
-		case KeyEvent.VK_DOWN:
+		case KeyEvent.VK_S:
 			down = false;
 			break;
-		case KeyEvent.VK_LEFT:
+		case KeyEvent.VK_A:
 			left = false;
 			break;
-		case KeyEvent.VK_RIGHT:
+		case KeyEvent.VK_D:
 			right = false;
 			break;
-		case KeyEvent.VK_SPACE:
-			space = 0;
+		case KeyEvent.VK_UP:
+			bomb = 0;
+			break;
+		case KeyEvent.VK_DOWN:
+			bomb = 0;
+			break;
+		case KeyEvent.VK_LEFT:
+			bomb = 0;
+			break;
+		case KeyEvent.VK_RIGHT:
+			bomb = 0;
 			break;
 		}
 	}

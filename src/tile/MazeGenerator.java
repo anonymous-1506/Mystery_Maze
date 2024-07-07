@@ -83,7 +83,7 @@ public class MazeGenerator {
     {
     	int a = 1+(int)(Math.random()*4);
     	int starti[] = {0,4,10};
-    	int endi[] = {3,9,13};
+    	int endi[] = {3,9,12};
     	int startj[] = {3,3,10};
     	int endj[] = {9,9,12};
     	while(a > 0)
@@ -133,6 +133,51 @@ public class MazeGenerator {
     			}
     		}
     	}
+    }
+    //door position:
+    public int  doori()
+    {
+    	boolean done = false;
+    	int ret = 0;
+    	for(int i = 0; i < rows; i++)
+    	{
+    		for(int j = 0; j< cols; j++)
+    		{
+    			if(maze[i][j] == 3)
+    			{
+    					ret = i;
+    					done = true;
+    					break;
+    			}
+    			if(done)
+    			{
+    				break;
+    			}
+    		}
+    	}
+    	return ret;
+    }
+    public int  doorj()
+    {
+    	boolean done = false;
+    	int ret = 0;
+    	for(int i = 0; i < rows; i++)
+    	{
+    		for(int j = 0; j< cols; j++)
+    		{
+    			if(maze[i][j] == 3)
+    			{
+    					ret = j;
+    					done = true;
+    					break;
+    			}
+    			if(done)
+    			{
+    				break;
+    			}
+    		}
+    	}
+    	return ret;
     }
     //to include the 3rd tile:
     public void polishedwall() {
@@ -253,13 +298,13 @@ public class MazeGenerator {
     {
     	int ret = 0;
     	boolean done = false;
-    	for(int i = 11; i <= 13; i++)
+    	for(int i = 7; i <rows; i++)
     	{
     		for(int j = 10; j <= 12; j++)
     		{
     			if(maze[i][j] == 0)
     			{
-    				ret = i;
+    				ret = i-1;
     				done = true;
     				break;
     			}
@@ -275,13 +320,13 @@ public class MazeGenerator {
     {
     	int ret = 0;
     	boolean done = false;
-    	for(int i = 11; i <= 13; i++)
+    	for(int i = 7; i < rows; i++)
     	{
-    		for(int j = 10; j <= 12; j++)
+    		for(int j = 10; j <cols; j++)
     		{
     			if(i == target && maze[i][j] == 0)
     			{
-    				ret = j;
+    				ret = j+1;
     				done = true;
     				break;
     			}

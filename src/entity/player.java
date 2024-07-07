@@ -19,11 +19,11 @@ public class player extends entity{
 		this.gp = gp;
 		this.keyH = keyH;
 		
-		solid_area = new Rectangle();
-		solid_area.x = 8;
-		solid_area.y = 12;
-		solid_area.width = 32;
-		solid_area.height = 32;
+//		solid_area = new Rectangle();
+		SolidArea.x = 8;
+		SolidArea.y = 12;
+		SolidArea.width = 32;
+		SolidArea.height = 32;
 		
 		
 		GetPlayerImage();

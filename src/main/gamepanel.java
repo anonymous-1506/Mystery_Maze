@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import entity.player;
 import objects.bomb_obj;
 import objects.bomb_placer;
+import objects.key_object;
 import tile.MazeGenerator;
 import tile.Tilemanager;
 
@@ -38,6 +39,8 @@ public class gamepanel extends JPanel implements Runnable {
 	public KeyInput KeysI = new KeyInput();
 	public MazeGenerator maze = new MazeGenerator(this);
 	public Tilemanager tilem = new Tilemanager(this);
+	public BaseUI baseui = new BaseUI(this);
+	public key_object keyobj = new key_object(this);
 	Thread gameThread;
 	public Collisions collision = new Collisions(this);
 	public bomb_obj[] bombs = new bomb_obj[3];
@@ -110,6 +113,8 @@ public class gamepanel extends JPanel implements Runnable {
 	public void update() {
 		bombset.bomb_update();
 		player.update();
+		keyobj.update(player);
+		tilem.update(player);
 		
 	}
 	
@@ -117,6 +122,7 @@ public class gamepanel extends JPanel implements Runnable {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 		tilem.draw(g2,maze);
+		keyobj.draw(g2, this);
 		for(int i = 0; i < 3; i++)
 		{
 			if(bombs[i] != null)
@@ -125,6 +131,9 @@ public class gamepanel extends JPanel implements Runnable {
 			}
 		}
 		player.draw(g2);
+		//BASE UI:
+		baseui.draw(g2);
+		
 		g2.dispose();
 	}
 	
