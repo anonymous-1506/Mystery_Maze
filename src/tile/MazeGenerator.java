@@ -324,6 +324,7 @@ public void updateCoin()
 				{
 					maze[i][j] = 0;
 					gp.coin_score += 10;
+					gp.playSE(3);
 				}
 			}
 		}

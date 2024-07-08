@@ -38,6 +38,7 @@ public class gamepanel extends JPanel implements Runnable {
 	Thread gameThread;
 	public Collisions collision = new Collisions(this);
 	
+	public Sound sound = new Sound();
 	public MazeGenerator maze = new MazeGenerator(this);
 	public Tilemanager tilem = new Tilemanager(this);
 	public key_object keyobj = new key_object(this);
@@ -130,10 +131,7 @@ public class gamepanel extends JPanel implements Runnable {
 			gmenu.update();
 			break;
 		case 1:
-			if(coin_score >= 50)
-			{
-				boost = true;
-			}
+			PlayMusic(0);
 			if(change)
 			{
 				maze = new MazeGenerator(this);
@@ -210,4 +208,19 @@ public class gamepanel extends JPanel implements Runnable {
 		g2.dispose();
 	}
 	
+	public void PlayMusic(int i)
+	{
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+	public void StopMusic()
+	{
+		sound.stop();
+	}
+	public void playSE(int i)
+	{
+		sound.setFile(i);
+		sound.play();
+	}
 }

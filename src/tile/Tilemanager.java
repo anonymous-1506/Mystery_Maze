@@ -65,6 +65,7 @@ public class Tilemanager {
 				tiles[3].num = 1;
 				gp.gover.over_case = 2;
 				gp.KeysI.gamestate = 4;
+				gp.playSE(2);
 				
 			}
 		}
@@ -76,6 +77,7 @@ public class Tilemanager {
 			{
 				tiles[4].num = 1;
 				gp.coin_score += 100;
+				gp.playSE(3);
 			}
 		}
 	}

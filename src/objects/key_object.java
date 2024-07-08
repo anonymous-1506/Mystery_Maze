@@ -54,6 +54,7 @@ public class key_object {
 		{
 			this.taken = true;
 			this.inStock = true;
+			gp.playSE(1);
 			gp.tilem.tiles[3].collision = false;
 		}
 		entity.SolidArea.x = newx;
