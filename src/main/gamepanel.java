@@ -45,7 +45,7 @@ public class gamepanel extends JPanel implements Runnable {
 	public int bomb_count = 0;
 	public bomb_placer bombset = new bomb_placer(this);
 	public player player = new player(this,KeysI);
-	
+	int a = (int)(1+Math.random()*20);
 	// GAME PLAYER TIMER:
 	public int TIME = 60;
 	public int Player_timer = TIME;
@@ -61,8 +61,6 @@ public class gamepanel extends JPanel implements Runnable {
 		this.setDoubleBuffered(true);
 		this.addKeyListener(KeysI);
 		this.setFocusable(true);
-		
-		
 	}
 
 	
@@ -132,6 +130,10 @@ public class gamepanel extends JPanel implements Runnable {
 			gmenu.update();
 			break;
 		case 1:
+			if(coin_score >= 50)
+			{
+				boost = true;
+			}
 			if(change)
 			{
 				maze = new MazeGenerator(this);
@@ -147,6 +149,7 @@ public class gamepanel extends JPanel implements Runnable {
 			player.update();
 			keyobj.update(player);
 			tilem.update(player);
+			maze.updateCoin();
 			break;
 		case 2:
 			break;

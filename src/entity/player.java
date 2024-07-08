@@ -39,6 +39,8 @@ public class player extends entity{
 	}
 	public void update() {
 		
+		
+		
 		if (keyH.up == true || keyH.down == true || keyH.left == true || keyH.right == true)
 		{
 			if(keyH.up == true)

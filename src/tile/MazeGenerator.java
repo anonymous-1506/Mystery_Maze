@@ -77,6 +77,7 @@ public class MazeGenerator {
         includedoor();
         chest();
         obstacle();
+        coinplacer();
     }
     //for obstacles:
     public void obstacle()
@@ -292,51 +293,42 @@ public class MazeGenerator {
     	}
     	return ret;
     }
-    //for the initial position of treasure chest:    
-    public int get_initialX_chest()
-    {
-    	int ret = 0;
-    	boolean done = false;
-    	for(int i = 5; i <= 10; i++)
+    //get coins:
+public void coinplacer()
+{
+    int a =10;
+    while(a > 0)
+    {	
+    	int x,y;
+    	do
     	{
-    		for(int j = 3; j <= 9; j++)
-    		{
-    			if(maze[i][j] == 0)
-    			{
-    				ret = i;
-    				done = true;
-    				break;
-    			}
-    		}
-    		if(done)
-    		{
-    			break;
-    		}
-    	}
-    	return ret;
+    	 x = (int)(1 + Math.random()*(cols-1));
+    	 y = (int)(1 + Math.random()*(rows - 1));
+    	}while(getMaze(y,x) != 0);
+    	maze[y][x] = 6;
+    	a--;
     }
-    public int get_initialY_chest(int target)
-    {
-    	int ret = 0;
-    	boolean done = false;
-    	for(int i = 5; i <= 10; i++)
-    	{
-    		for(int j = 3; j <= 9; j++)
-    		{
-    			if(i == target && maze[i][j] == 0)
-    			{
-    				ret = j;
-    				done = true;
-    				break;
-    			}
-    		}
-    		if(done)
-    		{
-    			break;
-    		}
-    	}
-    	return ret;
-    }
+    
+}
+public void updateCoin()
+{
+	int X = gp.player.x;
+	int Y = gp.player.y;
+	for(int i =0; i <  rows;i++)
+	{
+		for(int j =0; j< cols;j++)
+		{
+			if(maze[i][j] == 6)
+			{
+				if(Math.abs((j*gp.tile_size_net) - X )<= 20 && Math.abs((i*gp.tile_size_net) - Y )<= 20)
+				{
+					maze[i][j] = 0;
+					gp.coin_score += 10;
+				}
+			}
+		}
+	}
+}
     
   //for the initial position of key:    
     public int get_initialX_Key()
@@ -383,57 +375,7 @@ public class MazeGenerator {
     	}
     	return ret;
     }
-    
-  //for the initial position of obstacle: 
-    
-    
-    public int get_initialX_Obstacle(int a,int b,int c,int d)
-    {	
-    	
-    	int ret = 0;
-    	boolean done = false;
-    	for(int i = a; i < b; i++)
-    	{
-    		for(int j = c; j < d; j++)
-    		{
-    			if(maze[i][j] == 0)
-    			{
-    				ret = i;
-    				done = true;
-    				break;
-    			}
-    		}
-    		if(done)
-    		{
-    			break;
-    		}
-    	}
-    	return ret;
-    }
-    public int get_initialY_Obstacle(int a,int b,int c,int d)
-    {
-    	int ret = 0;
-    	boolean done = false;
-    	int target = get_initialX_chest();
-    	for(int i = a; i <= b; i++)
-    	{
-    		for(int j = c; j <= d; j++)
-    		{
-    			if(i == target && maze[i][j] == 0)
-    			{
-    				ret = j;
-    				done = true;
-    				break;
-    			}
-    		}
-    		if(done)
-    		{
-    			break;
-    		}
-    	}
-    	return ret;
-    }
-    
+
     // Create random openings on the maze edges
     private void createEdgeOpenings() {
         int openings = random.nextInt(rows / 2) + random.nextInt(cols / 2);
@@ -470,6 +412,7 @@ public class MazeGenerator {
     public int getMaze(int i,int j) {
         return maze[i][j];
     }
+    
  // Get the maze array
     public boolean getMazeBool(int i,int j) {
         int check = maze[i][j];

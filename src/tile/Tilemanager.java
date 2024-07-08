@@ -46,6 +46,9 @@ public class Tilemanager {
 			tiles[5].image = ImageIO.read(getClass().getResourceAsStream("/objects/obstacle.png"));
 			tiles[5].collision = true;
 			
+			tiles[6] = new tile();
+			tiles[6].image = ImageIO.read(getClass().getResourceAsStream("/objects/coin.png"));
+			tiles[6].collision = false;
 		}catch(IOException e)
 		{
 			e.getStackTrace();

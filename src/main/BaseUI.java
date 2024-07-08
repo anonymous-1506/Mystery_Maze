@@ -72,6 +72,7 @@ public class BaseUI {
 		{
 			g2.drawImage(image3, total - 150, 10, 24, 24, null);
 		}
+		
 		if(gp.KeysI.gamestate == 2)
 		{	
 			g2.setFont(base1);
