@@ -39,6 +39,7 @@ public class Tilemanager {
 			
 			tiles[4] = new tile();
 			tiles[4].image = ImageIO.read(getClass().getResourceAsStream("/objects/chest.png"));
+			tiles[4].image2 = ImageIO.read(getClass().getResourceAsStream("/objects/chest_open.png"));
 			tiles[4].collision = false;
 			
 			tiles[5] = new tile();
@@ -54,13 +55,24 @@ public class Tilemanager {
 	{
 		if(!tiles[3].collision && gp.keyobj.inStock)
 		{	
-			int newx =  entity.SolidArea.x;
-			int newy =  entity.SolidArea.y;
 			int i = gp.maze.doori();
 			int j = gp.maze.doorj();
 			if(Math.abs(gp.player.x - (j*48)) <= 20  && Math.abs(gp.player.y - (i*48)) <= 20)
 			{
 				tiles[3].num = 1;
+				gp.gover.over_case = 2;
+				gp.KeysI.gamestate = 4;
+				
+			}
+		}
+		if(tiles[4].num == 0)
+		{
+			int a = gp.maze.chesti();
+			int b = gp.maze.chestj();
+			if(Math.abs(gp.player.x - (b*48)) <= 20 && Math.abs(gp.player.y - (48*a)) <= 20)
+			{
+				tiles[4].num = 1;
+				gp.coin_score += 100;
 			}
 		}
 	}
@@ -76,8 +88,24 @@ public class Tilemanager {
 				int arr = maze.getMaze(i, j);
 				if(arr > 3)
 				{
-					g2.drawImage(tiles[0].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
-					g2.drawImage(tiles[arr].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
+					if(arr == 4)
+					{
+						if(tiles[arr].num == 0)
+						{
+							g2.drawImage(tiles[0].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
+							g2.drawImage(tiles[arr].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
+						}
+						else if (tiles[arr].num ==1)
+						{
+							g2.drawImage(tiles[0].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
+							g2.drawImage(tiles[arr].image2, x,y,gp.tile_size_net,gp.tile_size_net,null);
+						}
+					}
+					else if(arr != 4)
+					{
+						g2.drawImage(tiles[0].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
+						g2.drawImage(tiles[arr].image, x,y,gp.tile_size_net,gp.tile_size_net,null);
+					}
 				}
 				else if(arr == 3)
 				{

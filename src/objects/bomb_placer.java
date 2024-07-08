@@ -41,4 +41,3 @@ public class bomb_placer {
 //			System.out.println("no:of bombs: "+gp.bomb_count);
 	}
 }
-

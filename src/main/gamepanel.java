@@ -22,12 +22,7 @@ public class gamepanel extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	//FPS
 	int FPS = 60;
-//	//player positional variables:
-//	int x = 100;
-//	int y = 100;
-//	int dx = 4;
-//	int dy = 4;
-//	//end
+
 	public final int tile_size = 48; // retro 16 x 16 tiles
 	final int scale = 1; // scales the 16 x 16
 	public final int tile_size_net = tile_size * scale;
@@ -36,19 +31,27 @@ public class gamepanel extends JPanel implements Runnable {
 	public final int screen_width = Columns*tile_size_net; //768 px
 	public final int screen_height = Rows*tile_size_net; //576 px
 	
-	public KeyInput KeysI = new KeyInput();
-	public MazeGenerator maze = new MazeGenerator(this);
-	public Tilemanager tilem = new Tilemanager(this);
+	public Game_over gover = new Game_over(this);
+	public Menu gmenu = new Menu(this);
 	public BaseUI baseui = new BaseUI(this);
-	public key_object keyobj = new key_object(this);
+	public KeyInput KeysI = new KeyInput();
 	Thread gameThread;
 	public Collisions collision = new Collisions(this);
+	
+	public MazeGenerator maze = new MazeGenerator(this);
+	public Tilemanager tilem = new Tilemanager(this);
+	public key_object keyobj = new key_object(this);
 	public bomb_obj[] bombs = new bomb_obj[3];
 	public int bomb_count = 0;
 	public bomb_placer bombset = new bomb_placer(this);
-	
 	public player player = new player(this,KeysI);
-
+	
+	// GAME PLAYER TIMER:
+	public int TIME = 60;
+	public int Player_timer = TIME;
+	//COINS:
+	public int coin_score = 0;
+	public boolean change = false;
 	
 	
 	public gamepanel()
@@ -66,8 +69,7 @@ public class gamepanel extends JPanel implements Runnable {
 	public void start(){
 		gameThread = new Thread(this);
 		gameThread.start();
-		
-	}
+		}
 	
 
 	@Override
@@ -101,7 +103,11 @@ public class gamepanel extends JPanel implements Runnable {
 			}
 			
 			if(timer >= 1000000000)
-			{
+			{	
+				if(KeysI.gamestate == 1)
+				{
+					Player_timer = Player_timer - 1;
+				}
 				System.out.println("FPS:"+drawer);
 				drawer = 0;
 				timer = 0;
@@ -111,28 +117,92 @@ public class gamepanel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
-		bombset.bomb_update();
-		player.update();
-		keyobj.update(player);
-		tilem.update(player);
+		
+		
+		if(Player_timer == 0)
+		{
+			KeysI.gamestate = 4;
+			gover.over_case = 1;
+			Player_timer = TIME;
+			
+		}
+		switch(KeysI.gamestate)
+		{
+		case 0:
+			gmenu.update();
+			break;
+		case 1:
+			if(change)
+			{
+				maze = new MazeGenerator(this);
+				tilem = new Tilemanager(this);
+				keyobj = new key_object(this);
+				bombs = new bomb_obj[3];
+				bomb_count = 0;
+				bombset = new bomb_placer(this);
+				player = new player(this,KeysI);
+				change = false;
+			}
+			bombset.bomb_update();
+			player.update();
+			keyobj.update(player);
+			tilem.update(player);
+			break;
+		case 2:
+			break;
+		case 3:
+			gmenu.update();
+			break;
+		case 4:
+			gover.update();
+			break;
+		}
 		
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		tilem.draw(g2,maze);
-		keyobj.draw(g2, this);
-		for(int i = 0; i < 3; i++)
+		switch(KeysI.gamestate)
 		{
-			if(bombs[i] != null)
+		case 0:
+			gmenu.draw(g2);
+			break;
+		case 1:
+			tilem.draw(g2,maze);
+			keyobj.draw(g2, this);
+			for(int i = 0; i < 3; i++)
 			{
-				bombs[i].draw(g2, this);
+				if(bombs[i] != null)
+				{
+					bombs[i].draw(g2, this);
+				}
 			}
+			player.draw(g2);
+			//BASE UI:
+			baseui.draw(g2);
+			break;
+		case 2:
+			tilem.draw(g2,maze);
+			keyobj.draw(g2, this);
+			for(int i = 0; i < 3; i++)
+			{
+				if(bombs[i] != null)
+				{
+					bombs[i].draw(g2, this);
+				}
+			}
+			player.draw(g2);
+			//BASE UI:
+			baseui.draw(g2);
+			break;
+		case 3:
+			gmenu.draw(g2);
+			break;
+		case 4:
+			gover.draw(g2);
+			break;
 		}
-		player.draw(g2);
-		//BASE UI:
-		baseui.draw(g2);
 		
 		g2.dispose();
 	}

@@ -7,8 +7,8 @@ public class KeyInput implements KeyListener{
 	
 	public boolean up,down,left,right;
 	public int bomb = 0;
-	
-	
+	public int gamestate = 0;
+	public boolean ups,downs,enter;
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -33,16 +33,49 @@ public class KeyInput implements KeyListener{
 			right = true;
 			break;
 		case KeyEvent.VK_UP:
-			bomb = 1;
+			if(gamestate == 1)
+			{
+				bomb = 1;
+			}
+			else if(gamestate == 0 || gamestate == 4)
+			{
+				ups = true;
+			}
 			break;
 		case KeyEvent.VK_DOWN:
-			bomb = 2;
+			if(gamestate == 1)
+			{
+				bomb = 2;
+			}
+			else if(gamestate == 0 || gamestate == 4)
+			{
+				downs = true;
+			}
 			break;
 		case KeyEvent.VK_LEFT:
 			bomb = 3;
 			break;
 		case KeyEvent.VK_RIGHT:
 			bomb = 4;
+			break;
+		case KeyEvent.VK_ESCAPE:
+			gamestate = 0;
+			break;
+		case KeyEvent.VK_ENTER:
+			if(gamestate == 0 || gamestate == 4)
+			{
+				enter = true;
+			}
+			break;
+		case KeyEvent.VK_SPACE:
+			if(gamestate == 1)
+				{
+				gamestate = 2;
+				}
+			else if(gamestate == 2)
+				{
+				gamestate = 1;
+				};
 			break;
 		}
 		

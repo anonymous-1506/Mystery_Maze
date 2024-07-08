@@ -81,7 +81,7 @@ public class MazeGenerator {
     //for obstacles:
     public void obstacle()
     {
-    	int a = 1+(int)(Math.random()*4);
+    	int a = 2+(int)(Math.random()*4);
     	int starti[] = {0,4,10};
     	int endi[] = {3,9,12};
     	int startj[] = {3,3,10};
@@ -133,6 +133,51 @@ public class MazeGenerator {
     			}
     		}
     	}
+    }
+  //chest position:
+    public int  chesti()
+    {
+    	boolean done = false;
+    	int ret = 0;
+    	for(int i = 0; i < rows; i++)
+    	{
+    		for(int j = 0; j< cols; j++)
+    		{
+    			if(maze[i][j] == 4)
+    			{
+    					ret = i;
+    					done = true;
+    					break;
+    			}
+    			if(done)
+    			{
+    				break;
+    			}
+    		}
+    	}
+    	return ret;
+    }
+    public int  chestj()
+    {
+    	boolean done = false;
+    	int ret = 0;
+    	for(int i = 0; i < rows; i++)
+    	{
+    		for(int j = 0; j< cols; j++)
+    		{
+    			if(maze[i][j] == 4)
+    			{
+    					ret = j;
+    					done = true;
+    					break;
+    			}
+    			if(done)
+    			{
+    				break;
+    			}
+    		}
+    	}
+    	return ret;
     }
     //door position:
     public int  doori()
