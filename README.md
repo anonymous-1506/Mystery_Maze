@@ -118,7 +118,7 @@
   <p>Implementations</p>
   <ul>
     <li>Basic Sound Effects when an object is slelected is included
-    <li>A small bug was fiexed by me recently.
+    <li>Two samll bugs , one related to the Timer and the other related to Scoring System were fixed just after the deadline.
       
   </ul>
   </li>
