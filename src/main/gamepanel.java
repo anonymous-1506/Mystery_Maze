@@ -131,9 +131,11 @@ public class gamepanel extends JPanel implements Runnable {
 			gmenu.update();
 			break;
 		case 1:
-			PlayMusic(0);
+			
 			if(change)
 			{
+				Player_timer = 60;
+				coin_score = 0;
 				maze = new MazeGenerator(this);
 				tilem = new Tilemanager(this);
 				keyobj = new key_object(this);
