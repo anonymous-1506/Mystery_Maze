@@ -23,7 +23,7 @@
   </ul>
     <p>Implementations for the same</p>
     <ul>
-      <li>For generating the maze, I used the a DFS based Algorithm.
+      <li>For generating the maze, I used a DFS based Algorithm.
       <li>The paths as of now lead to a Door(at roughly the top of the maze),a Treasure Chest (roughly the center or middle portion) and a lot of dead ends.
       <li>There are spike obstacles that are generated randomly(number of them : 1 to 4 randomly , can make it level dependent later).
       <li>The maze generated as of now is unique for every gameplay.
@@ -118,7 +118,7 @@
   <p>Implementations</p>
   <ul>
     <li>Basic Sound Effects when an object is slelected is included
-    <li>Two samll bugs , one related to the Timer and the other related to Scoring System were fixed just after the deadline.
+    <li>Two small bugs , one related to the Timer and the other related to Scoring System were fixed just after the deadline.
       
   </ul>
   </li>
