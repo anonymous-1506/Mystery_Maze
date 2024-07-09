@@ -52,10 +52,13 @@ public class key_object {
 		entity.SolidArea.y = entity.SolidArea.y + entity.y;
 		if(entity.SolidArea.intersects(this.SolidArea))
 		{
+			if(!taken)
+			{
+			gp.playSE(1);
 			this.taken = true;
 			this.inStock = true;
-			gp.playSE(1);
 			gp.tilem.tiles[3].collision = false;
+			}
 		}
 		entity.SolidArea.x = newx;
 		entity.SolidArea.y = newy;

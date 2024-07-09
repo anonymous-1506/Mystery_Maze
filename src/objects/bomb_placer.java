@@ -15,7 +15,7 @@ public class bomb_placer {
 		if(c !=  0)
 		{
 			
-		if(gp.bomb_count < 3)
+		if(gp.bomb_count < gp.bomb_stock)
 		{	
 				switch(c) {
 				case 1:

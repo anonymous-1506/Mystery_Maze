@@ -53,7 +53,7 @@ public class gamepanel extends JPanel implements Runnable {
 	//COINS:
 	public int coin_score = 0;
 	public boolean change = false;
-	
+	public int bomb_stock = 3;
 	
 	public gamepanel()
 	{
@@ -134,7 +134,7 @@ public class gamepanel extends JPanel implements Runnable {
 			
 			if(change)
 			{
-				Player_timer = 60;
+				Player_timer = TIME;
 				coin_score = 0;
 				maze = new MazeGenerator(this);
 				tilem = new Tilemanager(this);
