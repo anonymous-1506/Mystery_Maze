@@ -106,6 +106,13 @@ public class gamepanel extends JPanel implements Runnable {
 				if(KeysI.gamestate == 1)
 				{
 					Player_timer = Player_timer - 1;
+					for(int i = 0; i < bomb_stock; i++)
+					{
+						if(bombs[i] != null)
+						{
+							bombs[i].bomb_timer++;
+						}
+					}
 				}
 				System.out.println("FPS:"+drawer);
 				drawer = 0;
@@ -131,7 +138,6 @@ public class gamepanel extends JPanel implements Runnable {
 			gmenu.update();
 			break;
 		case 1:
-			
 			if(change)
 			{
 				Player_timer = TIME;
@@ -174,13 +180,7 @@ public class gamepanel extends JPanel implements Runnable {
 		case 1:
 			tilem.draw(g2,maze);
 			keyobj.draw(g2, this);
-			for(int i = 0; i < 3; i++)
-			{
-				if(bombs[i] != null)
-				{
-					bombs[i].draw(g2, this);
-				}
-			}
+			bombset.draw(g2);
 			player.draw(g2);
 			//BASE UI:
 			baseui.draw(g2);

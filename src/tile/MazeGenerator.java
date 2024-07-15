@@ -330,7 +330,42 @@ public void updateCoin()
 		}
 	}
 }
-    
+  
+public void flasher(int X, int Y)
+{
+	int i1 = Y/gp.tile_size_net;
+	int j1 = X/gp.tile_size_net;
+	for(int i = i1 -1 ; i <i1+2; i++)
+	{
+		for(int j = j1 - 1; j < j1+2;j++)
+		{
+			if((i >= 0 && i < rows) && (j >=0 && j < cols))
+			{
+				maze[i][j] = 7;
+			}
+		}
+	}
+}
+
+public void grounded(int X , int Y)
+{
+	int i1 = Y/gp.tile_size_net;
+	int j1 = X/gp.tile_size_net;
+	for(int i = i1 -1 ; i <i1+2; i++)
+	{
+		for(int j = j1 - 1; j < j1+2;j++)
+		{
+			if((i >= 0 && i < rows) && (j >=0 && j < cols))
+			{
+				if(maze[i][j] != 3 && maze[i][j] != 4 && maze[i][j] != 6)
+				{
+					maze[i][j] = 0;
+				}
+			}
+		}
+	}
+}
+
   //for the initial position of key:    
     public int get_initialX_Key()
     {

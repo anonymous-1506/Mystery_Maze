@@ -50,9 +50,10 @@ public class Menu {
 	{	
 		int current = button;
 		if(gp.KeysI.ups)
-		{
+		{	
+			gp.playSE(4);
 			if(current == 1)
-			{
+			{	
 				button = 3;
 				gp.KeysI.ups = false;
 			}
@@ -69,6 +70,7 @@ public class Menu {
 		}
 		if(gp.KeysI.downs)
 		{
+			gp.playSE(4);
 			if(current == 1)
 			{
 				button =2;
@@ -87,6 +89,7 @@ public class Menu {
 		}
 		if(gp.KeysI.enter)
 		{
+			gp.playSE(4);
 			if(button == 1)
 			{
 				gp.KeysI.gamestate = 1;

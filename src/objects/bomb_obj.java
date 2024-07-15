@@ -12,12 +12,14 @@ public class bomb_obj {
 	gamepanel gp;
 	int X = 0;
 	int Y = 0;
+	public int bomb_timer = 0;
 	boolean deployed = false;
 	boolean used = false;
 	boolean blast = false;
 	BufferedImage image;
 	BufferedImage image1;
 	BufferedImage image2;
+	BufferedImage image3;
 	
 	public bomb_obj(gamepanel gp,String direction)
 	{
@@ -45,6 +47,7 @@ public class bomb_obj {
 			image = ImageIO.read(getClass().getResourceAsStream("/objects/bomb.png"));
 			image1 = ImageIO.read(getClass().getResourceAsStream("/objects/shadow.png"));
 			image2 = ImageIO.read(getClass().getResourceAsStream("/objects/spark.png"));
+			image3 = ImageIO.read(getClass().getResourceAsStream("/tiles/tile1.png"));
 		}catch(IOException e)
 		{
 			e.getStackTrace();

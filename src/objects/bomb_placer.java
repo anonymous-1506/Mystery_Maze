@@ -1,5 +1,7 @@
 package objects;
 
+import java.awt.Graphics2D;
+
 import main.gamepanel;
 
 public class bomb_placer {
@@ -38,6 +40,36 @@ public class bomb_placer {
 				gp.bomb_count++;
 		}
 		}
+		
+		for(int i = 0; i < gp.bomb_stock;i ++)
+		{
+			if(gp.bombs[i] != null)
+			{	
+				if(gp.bombs[i].bomb_timer == 2)
+				{
+					gp.playSE(5);
+					gp.bombs[i].used = true;
+					gp.maze.flasher(gp.bombs[i].X, gp.bombs[i].Y);
+					gp.bombs[i].bomb_timer = 3;
+				}
+				if(gp.bombs[i].bomb_timer == 4)
+				{
+					gp.maze.grounded(gp.bombs[i].X, gp.bombs[i].Y);
+					gp.bombs[i] = null;
+				}
+			}
+		}
 //			System.out.println("no:of bombs: "+gp.bomb_count);
+	}
+	
+	public void draw(Graphics2D g2)
+	{
+		for(int i = 0; i < 3; i++)
+		{
+			if(gp.bombs[i] != null)
+			{
+				gp.bombs[i].draw(g2, gp);
+			}
+		}
 	}
 }

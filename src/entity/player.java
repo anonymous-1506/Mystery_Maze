@@ -39,7 +39,20 @@ public class player extends entity{
 	}
 	public void update() {
 		
-		
+		for(int i =0; i < gp.maze.rows; i++)
+		{
+			for(int j = 0; j < gp.maze.cols;j++)
+			{
+				if(gp.maze.getMaze(i, j) == 7)
+				{
+					if(Math.abs(x - j*gp.tile_size_net) <= 20 && Math.abs(y - i*gp.tile_size_net) <= 20)
+					{	
+						gp.gover.over_case = 3;
+						gp.KeysI.gamestate = 4;
+					}
+				}
+			}
+		}
 		
 		if (keyH.up == true || keyH.down == true || keyH.left == true || keyH.right == true)
 		{

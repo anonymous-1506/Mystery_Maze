@@ -53,16 +53,19 @@ public class Game_over {
 		int current = button;
 		if(current == 2 && gp.KeysI.ups)
 		{
+			gp.playSE(4);
 			button = 1;
 			gp.KeysI.ups = false;
 		}
 		if(current == 1 && gp.KeysI.downs)
 		{
+			gp.playSE(4);
 			button =2 ;
 			gp.KeysI.downs = false;
 		}
 		if(gp.KeysI.enter)
 		{
+			gp.playSE(4);
 			if(button == 1)
 			{
 				gp.KeysI.gamestate = 0;
@@ -88,8 +91,9 @@ public class Game_over {
 			g2.drawString("GAME OVER! TIME'S UP", gp.screen_width/2 - 400, gp.screen_height/2 - 100);
 			break;
 		case 2:
-			g2.drawImage(case2,9*48,2*48,172,96,null);
-			g2.drawString("CONGRATULATIONS!VICTORY", gp.screen_width/2 - 400, gp.screen_height/2 - 100);
+			g2.drawImage(case2,9*48,0,172,96,null);
+			g2.drawString("CONGRATULATIONS !", gp.screen_width/2 - 300, gp.screen_height/2 - 200);
+			g2.drawString("VICTORY", gp.screen_width/2 - 120, gp.screen_height/2 - 100);
 			break;
 		case 3:
 			g2.drawImage(case3,9*48,2*48,172,96,null);
