@@ -64,7 +64,7 @@ public class Tilemanager {
 		{	
 			int i = gp.maze.doori();
 			int j = gp.maze.doorj();
-			if(Math.abs(gp.player.x - (j*48)) <= 20  && Math.abs(gp.player.y - (i*48)) <= 20)
+			if(Math.abs(gp.player.x - (j*gp.tile_size_net)) <= 20  && Math.abs(gp.player.y - (i*gp.tile_size_net)) <= 20)
 			{
 				tiles[3].num = 1;
 				gp.gover.over_case = 2;
@@ -77,13 +77,33 @@ public class Tilemanager {
 		{
 			int a = gp.maze.chesti();
 			int b = gp.maze.chestj();
-			if(Math.abs(gp.player.x - (b*48)) <= 20 && Math.abs(gp.player.y - (48*a)) <= 20)
+			if(Math.abs(gp.player.x - (b*gp.tile_size_net)) <= 20 && Math.abs(gp.player.y - (gp.tile_size_net*a)) <= 20)
 			{
 				tiles[4].num = 1;
 				gp.coin_score += 100;
 				gp.playSE(3);
 			}
 		}
+	    	for(int i = 0; i < gp.maze.rows; i++)
+	    	{
+	    		for (int j = 0; j < gp.maze.cols; j++)
+	    		{
+	    			if(gp.maze.getMaze(i, j) == 1)
+	    			{
+	    				if(i == gp.maze.rows - 1)
+	    				{
+	    					gp.maze.maze[i][j] = 2;
+	    				}
+	    				else if(i != gp.maze.rows - 1)
+	    				{
+	    					if( gp.maze.getMaze(i+1,j) == 0)
+	    					{
+	    						gp.maze.maze[i][j] = 2;
+	    					}
+	    				}
+	    			}
+	    		}
+	    	}
 	}
 	public void draw(Graphics2D g2,MazeGenerator maze) {
 //		

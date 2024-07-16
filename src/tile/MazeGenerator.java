@@ -79,37 +79,43 @@ public class MazeGenerator {
         obstacle();
         coinplacer();
     }
+    //check helper  for obstacle placement:
+    public boolean check(int i,int j)
+    {	
+    	if(getMaze(i,j) != 0)
+    	{
+    		return false;
+    	}
+    	else if(getMaze(i,j) == 0)
+    	{
+    		if((getMaze(i,j-1) == 1 || getMaze(i,j-1) == 2) && (getMaze(i,j+1) == 1 || getMaze(i,j+1) == 2))
+    		{	
+    			return true;
+    		}
+    		else
+    		{
+    			return false;
+    		}
+    	}
+    	return false;
+    }
     //for obstacles:
     public void obstacle()
     {
-    	int a = 2+(int)(Math.random()*4);
-    	int starti[] = {0,4,10};
-    	int endi[] = {3,9,12};
-    	int startj[] = {3,3,10};
-    	int endj[] = {9,9,12};
+    	int a = 1 + (int)(Math.random()*5);
     	while(a > 0)
     	{	
-    		boolean done = false;
-    		int b = (int)(Math.random()*3);
-    		for(int i = starti[b]; i <= endi[b];i++)
+    		int i,j;
+    		do
     		{
-    			for(int j = startj[b]; j <= endj[b]; j++)
-    			{
-    				if(maze[i][j] == 0 && maze[i][j-1] == 1 && maze[i][j+1] == 1)
-    				{
-    					maze[i][j] = 5;
-    					done = true;
-    					break;
-    				}
-    			}
-    			if(done)
-    			{
-    				break;
-    			}
+    			i = 1 + (int)(Math.random()*rows);
+        		j = 1 + (int)(Math.random()*cols);
     		}
+    		while(check(i,j) == false);
+    		maze[i][j] = 5;
     		a--;
+    		
     	}
-    	
     }
     //for the compulsory door:
     public void includedoor()
@@ -341,7 +347,10 @@ public void flasher(int X, int Y)
 		{
 			if((i >= 0 && i < rows) && (j >=0 && j < cols))
 			{
-				maze[i][j] = 7;
+				if(maze[i][j] != 6 && maze[i][j] != 4 && maze[i][j] != 3)
+				{
+					maze[i][j] = 7;
+				}
 			}
 		}
 	}
@@ -357,7 +366,7 @@ public void grounded(int X , int Y)
 		{
 			if((i >= 0 && i < rows) && (j >=0 && j < cols))
 			{
-				if(maze[i][j] != 3 && maze[i][j] != 4 && maze[i][j] != 6)
+				if(maze[i][j] == 7)
 				{
 					maze[i][j] = 0;
 				}
@@ -366,51 +375,6 @@ public void grounded(int X , int Y)
 	}
 }
 
-  //for the initial position of key:    
-    public int get_initialX_Key()
-    {
-    	int ret = 0;
-    	boolean done = false;
-    	for(int i = 7; i <rows; i++)
-    	{
-    		for(int j = 10; j <= 12; j++)
-    		{
-    			if(maze[i][j] == 0)
-    			{
-    				ret = i-1;
-    				done = true;
-    				break;
-    			}
-    		}
-    		if(done)
-    		{
-    			break;
-    		}
-    	}
-    	return ret;
-    }
-    public int get_initialY_Key(int target)
-    {
-    	int ret = 0;
-    	boolean done = false;
-    	for(int i = 7; i < rows; i++)
-    	{
-    		for(int j = 10; j <cols; j++)
-    		{
-    			if(i == target && maze[i][j] == 0)
-    			{
-    				ret = j+1;
-    				done = true;
-    				break;
-    			}
-    		}
-    		if(done)
-    		{
-    			break;
-    		}
-    	}
-    	return ret;
-    }
 
     // Create random openings on the maze edges
     private void createEdgeOpenings() {
@@ -446,7 +410,14 @@ public void grounded(int X , int Y)
 
     // Get the maze array
     public int getMaze(int i,int j) {
-        return maze[i][j];
+    	if((i >= 0 && i <rows) && (j >= 0 && j < cols))
+    	{
+    		return maze[i][j];
+    	}
+    	else
+    	{
+    		return 0;
+    	}
     }
     
  // Get the maze array
