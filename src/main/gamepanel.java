@@ -16,15 +16,13 @@ import javax.swing.JPanel;
 
 
 public class gamepanel extends JPanel implements Runnable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	//FPS
 	int FPS = 60;
 
-	public final int tile_size = 48; // retro 16 x 16 tiles
-	final int scale = 1; // scales the 16 x 16
+	public final int tile_size = 48;
+	final int scale = 1;
 	public final int tile_size_net = tile_size * scale;
 	public final int Columns = 20;
 	public final int Rows = 15;
@@ -47,8 +45,10 @@ public class gamepanel extends JPanel implements Runnable {
 	public bomb_placer bombset = new bomb_placer(this);
 	public player player = new player(this,KeysI);
 	int a = (int)(1+Math.random()*20);
+	//HEALTH STATUS:
+	public int health_status = 100;
 	// GAME PLAYER TIMER:
-	public int TIME = 60;
+	public int TIME = 2;
 	public int Player_timer = TIME;
 	//COINS:
 	public int coin_score = 0;
@@ -99,6 +99,35 @@ public class gamepanel extends JPanel implements Runnable {
 			repaint();
 			delta--;
 			drawer += 1;
+			//SKULL ANIMATION
+			if(drawer % 2 == 0)
+			{
+				if(KeysI.gamestate == 4 && gover.over_case == 3)
+				{
+					if(gover.animation < 3)
+						{
+						gover.animation ++;
+						}
+					else if(gover.animation >= 3)
+					{
+						gover.animation = (gover.animation + 1)%3;
+					}
+				}
+			}
+			if(drawer % 9 == 0)
+			{
+				if(KeysI.gamestate == 4 && gover.over_case == 1)
+				{
+					if(gover.animation2 < 4)
+						{
+						gover.animation2 ++;
+						}
+					else if(gover.animation2 >= 4)
+					{
+						gover.animation2 = (gover.animation2 + 1)%4;
+					}
+				}
+			}
 			}
 			
 			if(timer >= 1000000000)
@@ -123,15 +152,20 @@ public class gamepanel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
-		
-		
+		//HEATLTH CHECK:
+		if(health_status == 0)
+		{
+			gover.over_case = 3;
+			KeysI.gamestate = 4;
+		}
+		//RESET TIMER:
 		if(Player_timer == 0)
 		{
 			KeysI.gamestate = 4;
 			gover.over_case = 1;
 			Player_timer = TIME;
-			
 		}
+		
 		switch(KeysI.gamestate)
 		{
 		case 0:
@@ -139,11 +173,13 @@ public class gamepanel extends JPanel implements Runnable {
 			break;
 		case 1:
 			if(change)
-			{
+			{	
+				health_status = 100;
 				Player_timer = TIME;
 				coin_score = 0;
 				maze = new MazeGenerator(this);
 				tilem = new Tilemanager(this);
+				baseui = new BaseUI(this);
 				keyobj = new key_object(this);
 				bombs = new bomb_obj[3];
 				bomb_count = 0;

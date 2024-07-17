@@ -434,6 +434,20 @@ public void grounded(int X , int Y)
         }
         
     }
+ // Get the maze array
+    public int getMazeBoolType(int i,int j) {
+        int check = maze[i][j];
+        boolean check1 = gp.tilem.tiles[check].collision;
+        if(check1)
+        {
+        	return check;
+        }
+        else
+        {
+        	return 0;
+        }
+        
+    }
     
 
 }

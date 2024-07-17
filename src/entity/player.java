@@ -47,8 +47,7 @@ public class player extends entity{
 				{
 					if(Math.abs(x - j*gp.tile_size_net) <= 20 && Math.abs(y - i*gp.tile_size_net) <= 20)
 					{	
-						gp.gover.over_case = 3;
-						gp.KeysI.gamestate = 4;
+						gp.health_status -= 1;
 					}
 				}
 			}

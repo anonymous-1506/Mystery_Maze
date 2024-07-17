@@ -25,41 +25,66 @@ public class Collisions {
 		int entityBottomRow = entityRectBottomY/gp.tile_size_net;
 		
 		boolean tile1,tile2;
+		int tile1_2,tile2_2;
 		
 		switch(entity.direction) {
 		case "up":
 			entityTopRow = (entityRectTopY - entity.speed)/gp.tile_size_net; //block that the entity is trying to enter
 				tile1 = gp.maze.getMazeBool(entityTopRow,entityLeftCol);
+				tile1_2 = gp.maze.getMazeBoolType(entityTopRow,entityLeftCol);
 				tile2 = gp.maze.getMazeBool(entityTopRow,entityRightCol);
+				tile2_2 = gp.maze.getMazeBoolType(entityTopRow,entityRightCol);
 				if (tile1 == true || tile2 == true)
-				{
+				{	
+					if(tile1_2 == 5 || tile2_2 == 5)
+					{
+						gp.health_status --;
+					}
 					entity.collision_on = true;
 				}
 			break;
 		case "down":
 			entityBottomRow = (entityRectBottomY + entity.speed)/gp.tile_size_net; //block that the entity is trying to enter
 			tile1 = gp.maze.getMazeBool(entityBottomRow,entityLeftCol);
+			tile1_2 = gp.maze.getMazeBoolType(entityBottomRow,entityLeftCol);
 			tile2 = gp.maze.getMazeBool(entityBottomRow,entityRightCol);
+			tile2_2 = gp.maze.getMazeBoolType(entityBottomRow,entityRightCol);
 			if (tile1 == true || tile2 == true)
-			{
+			{	
+				if(tile1_2 == 5 || tile2_2 == 5)
+				{
+					gp.health_status --;
+				}
 				entity.collision_on = true;
 			}
 			break;
 		case "left":
 			entityLeftCol = (entityRectLeftX - entity.speed)/gp.tile_size_net; //block that the entity is trying to enter
 			tile1 = gp.maze.getMazeBool(entityBottomRow,entityLeftCol);
+			tile1_2 = gp.maze.getMazeBoolType(entityBottomRow,entityLeftCol);
 			tile2 = gp.maze.getMazeBool(entityTopRow,entityLeftCol);
+			tile2_2 = gp.maze.getMazeBoolType(entityTopRow,entityLeftCol);
 			if (tile1 == true || tile2 == true)
-			{
+			{	
+				if(tile1_2 == 5 || tile2_2 == 5)
+				{
+					gp.health_status --;
+				}
 				entity.collision_on = true;
 			}
 			break;
 		case "right":
 			entityRightCol = (entityRectRightX + entity.speed)/gp.tile_size_net; //block that the entity is trying to enter
 			tile1 = gp.maze.getMazeBool(entityBottomRow,entityRightCol);
+			tile1_2 = gp.maze.getMazeBoolType(entityBottomRow,entityRightCol);
 			tile2 = gp.maze.getMazeBool(entityTopRow,entityRightCol);
+			tile2_2 = gp.maze.getMazeBoolType(entityTopRow,entityRightCol);
 			if (tile1 == true || tile2 == true)
-			{
+			{	
+				if(tile1_2 == 5 || tile2_2 == 5)
+				{
+					gp.health_status --;
+				}
 				entity.collision_on = true;
 			}
 			break;
